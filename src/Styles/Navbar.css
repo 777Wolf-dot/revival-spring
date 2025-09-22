@@ -1,0 +1,129 @@
+/* General Navbar */
+.navbar {
+  background: linear-gradient(90deg, #d32f2f, #1976d2);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.navbar-logo {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Desktop Links */
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease, transform 0.2s;
+}
+
+.navbar-links a:hover {
+  color: #ffeb3b;
+  transform: translateY(-2px);
+}
+
+/* Hamburger Icon (hidden on desktop) */
+.menu-icon {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* Mobile Menu (slide-out) */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  margin-top: 56.6px;
+  width: 220px;
+  height: 100%;
+  background: #d32f2f;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 20px;
+  gap: 20px;
+  transition: left 0.3s ease;
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  color: #1976d2;
+}
+
+.mobile-menu.open {
+  left: 0;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+  .menu-icon {
+    display: block;
+  }
+}
+.logout-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #ffeb3b;
+}
+
+
+.welcome-text {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+}
+
+.logout-btn {
+  background: red;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: darkred;
+}
