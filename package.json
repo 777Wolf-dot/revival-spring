@@ -43,9 +43,11 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/777Wolf-dot/revival-spring.git"
-  },
-  "bugs": {
+  },  "bugs": {
     "url": "https://github.com/777Wolf-dot/revival-spring/issues"
   },
-  "homepage": "https://github.com/777Wolf-dot/revival-spring#readme"
+  "homepage": "https://github.com/777Wolf-dot/revival-spring#readme",
+  "engines": {
+    "node": "20.x"
+  }
 }
