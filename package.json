@@ -46,7 +46,8 @@
   },  "bugs": {
     "url": "https://github.com/777Wolf-dot/revival-spring/issues"
   },
-  "homepage": "https://github.com/777Wolf-dot/revival-spring#readme",
+  "homepage": ".",
+
   "engines": {
     "node": "20.x"
   }
