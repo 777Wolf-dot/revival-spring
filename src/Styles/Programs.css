@@ -1,0 +1,40 @@
+.programs-page {
+  padding: 2rem;
+  text-align: center;
+}
+
+.programs-title {
+  font-size: 2rem;
+  color: #457b9d;
+  margin-bottom: 1rem;
+}
+
+.programs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.program-card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.program-desc {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.no-programs, .loading {
+  color: #555;
+  font-style: italic;
+}

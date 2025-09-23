@@ -1,0 +1,150 @@
+/* src/Styles/Home.css */
+
+.home-container {
+  font-family: "Arial", sans-serif;
+  color: #222;
+  background: #f9f9f9;
+  padding: 0;
+  margin: 0;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(255, 0, 0, 0.7), rgba(0, 0, 255, 0.7)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
+      center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.cta-btn {
+  background: white;
+  color: red;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  background: #ffebeb;
+  color: blue;
+}
+
+/* Verse Section */
+.verse {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.verse h2 {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.verse blockquote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #333;
+  border-left: 5px solid blue;
+  padding-left: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Events Section */
+.events {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.events h2 {
+  color: red;
+  margin-bottom: 30px;
+}
+
+.event-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: 0.3s;
+  text-align: left;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.event-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.event-card h3 {
+  color: blue;
+  margin-bottom: 10px;
+}
+
+.event-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.event-card small {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: gray;
+}
+
+/* About Us */
+.about {
+  background: #fff;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.about h2 {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Footer */
+.footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}

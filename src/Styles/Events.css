@@ -1,0 +1,46 @@
+.events-page {
+  padding: 2rem;
+  text-align: center;
+}
+
+.events-title {
+  font-size: 2rem;
+  color: #e63946;
+  margin-bottom: 1rem;
+}
+
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.event-card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.event-date {
+  color: #1d3557;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.event-desc {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.no-events, .loading {
+  color: #555;
+  font-style: italic;
+}
