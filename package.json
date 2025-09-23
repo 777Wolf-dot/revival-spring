@@ -44,7 +44,6 @@
     "type": "git",
     "url": "git+https://github.com/777Wolf-dot/revival-spring.git"
   },
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/777Wolf-dot/revival-spring/issues"
   },
