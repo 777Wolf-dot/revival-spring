@@ -1,3 +1,4 @@
+// src/Pages/Dashboard.js
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import "../Styles/Dashboard.css";
@@ -51,16 +52,18 @@ const ManagePrograms = () => {
   }, []);
 
   const fetchPrograms = async () => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("programs")
       .select("*")
       .order("id", { ascending: false });
-    setPrograms(data || []);
+    if (error) console.error("Error fetching programs:", error);
+    else setPrograms(data || []);
   };
 
   const addProgram = async () => {
     if (!title || !description) return;
-    await supabase.from("programs").insert([{ title, description }]);
+    const { error } = await supabase.from("programs").insert([{ title, description }]);
+    if (error) console.error("Error adding program:", error);
     setTitle("");
     setDescription("");
     fetchPrograms();
@@ -109,23 +112,33 @@ const ManageEvents = () => {
   }, []);
 
   const fetchEvents = async () => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("events")
       .select("*")
       .order("date", { ascending: true });
-    setEvents(data || []);
+    if (error) console.error("Error fetching events:", error);
+    else setEvents(data || []);
   };
 
   const uploadImage = async (file) => {
-    const { data, error } = await supabase.storage
-      .from("events")
-      .upload(`event-${Date.now()}.jpg`, file);
-
-    if (error) {
-      console.error(error);
+    // Check if bucket exists
+    const { data: buckets } = await supabase.storage.listBuckets();
+    if (!buckets.find((b) => b.name === "events")) {
+      console.error("Bucket 'events' does not exist in Supabase Storage!");
       return null;
     }
-    return supabase.storage.from("events").getPublicUrl(data.path).data.publicUrl;
+
+    const { data, error } = await supabase.storage
+      .from("events")
+      .upload(`event-${Date.now()}.jpg`, file, { upsert: true });
+
+    if (error) {
+      console.error("Error uploading image:", error);
+      return null;
+    }
+
+    const publicUrl = supabase.storage.from("events").getPublicUrl(data.path).data.publicUrl;
+    return publicUrl;
   };
 
   const addEvent = async () => {
@@ -133,9 +146,10 @@ const ManageEvents = () => {
     let imageUrl = null;
     if (image) imageUrl = await uploadImage(image);
 
-    await supabase
+    const { error } = await supabase
       .from("events")
       .insert([{ title, description, date, image_url: imageUrl }]);
+    if (error) console.error("Error adding event:", error);
 
     setTitle("");
     setDescription("");
@@ -195,17 +209,20 @@ const UpdateVerse = () => {
   }, []);
 
   const fetchVerse = async () => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("verses")
       .select("*")
       .order("id", { ascending: false })
       .limit(1);
-    if (data && data.length) setCurrentVerse(data[0]);
+    if (error) console.error("Error fetching verse:", error);
+    else if (data && data.length) setCurrentVerse(data[0]);
   };
 
   const updateVerse = async () => {
     if (!verse || !reference) return;
-    await supabase.from("verses").insert([{ verse_text: verse, reference }]);
+    const { error } = await supabase.from("verses").insert([{ verse_text: verse, reference }]);
+    if (error) console.error("Error updating verse:", error);
+
     setVerse("");
     setReference("");
     fetchVerse();

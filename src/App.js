@@ -10,6 +10,7 @@ import Programs from "./Pages/Programs";
 import AdminEvents from "./Pages/AdminEvents";
 import AdminPrograms from "./Pages/AdminPrograms";
 import AdminVerse from "./Pages/AdminVerse";
+import About from "./Pages/About";
 import { AuthProvider } from "./context/AuthContext";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<h1>About Page</h1>} />
+          <Route path="/about" element={<About/>} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/events" element={<Events />} />
           <Route path="/contact" element={<h1>Contact Page</h1>} />

@@ -27,23 +27,24 @@ const Home = () => {
   }, []);
 
   // Fetch latest verse
-  useEffect(() => {
-    const fetchVerse = async () => {
-      const { data, error } = await supabase
-        .from("verses")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(1);
+useEffect(() => {
+  const fetchVerse = async () => {
+    const { data, error } = await supabase
+      .from("verses")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(1);
 
-      if (error) {
-        console.error("Error fetching verse:", error.message);
-      } else {
-        setVerse(data[0]);
-      }
-    };
+    if (error) {
+      console.error("Error fetching verse:", error);
+    } else if (data && data.length > 0) {
+      setVerse(data[0]);
+    }
+  };
 
-    fetchVerse();
-  }, []);
+  fetchVerse();
+}, []);
+
 
   return (
     <div className="home-container">
@@ -104,10 +105,7 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
-        <p>Contact us: youth@revivalsprings.org | +254 700 123 456</p>
-        <p>&copy; {new Date().getFullYear()} Revival Springs Youth Department</p>
-      </footer>
+      
     </div>
   );
 };
