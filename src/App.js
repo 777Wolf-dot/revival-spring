@@ -11,6 +11,9 @@ import AdminEvents from "./Pages/AdminEvents";
 import AdminPrograms from "./Pages/AdminPrograms";
 import AdminVerse from "./Pages/AdminVerse";
 import About from "./Pages/About";
+import Contribution from "./Pages/Contribution";
+import Footer from "./Components/Footer";
+import Contact from "./Pages/Contact";
 import { AuthProvider } from "./context/AuthContext";
 
 function App() {
@@ -23,14 +26,18 @@ function App() {
           <Route path="/about" element={<About/>} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/contact" element={<h1>Contact Page</h1>} />
+          <Route path="/contact" element={<Contact/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/admin/events" element={<AdminEvents />} />
           <Route path="/admin/programs" element={<AdminPrograms />} />
           <Route path="/admin/verse" element={<AdminVerse />} />
+          <Route path="/contribute" element={<Contribution />} />
+          
+          
         </Routes>
+        <Footer />
       </>
     </AuthProvider>
   );

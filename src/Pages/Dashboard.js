@@ -28,12 +28,19 @@ const Dashboard = () => {
         >
           Update Verse
         </button>
+        <button
+          className={activeTab === "destinations" ? "active" : ""}
+          onClick={() => setActiveTab("destinations")}
+        >
+          Manage Destinations
+        </button>
       </div>
 
       <div className="dashboard-content">
         {activeTab === "programs" && <ManagePrograms />}
         {activeTab === "events" && <ManageEvents />}
         {activeTab === "verse" && <UpdateVerse />}
+        {activeTab === "destinations" && <ManageDestinations />}
       </div>
     </div>
   );
@@ -121,7 +128,6 @@ const ManageEvents = () => {
   };
 
   const uploadImage = async (file) => {
-    // Check if bucket exists
     const { data: buckets } = await supabase.storage.listBuckets();
     if (!buckets.find((b) => b.name === "events")) {
       console.error("Bucket 'events' does not exist in Supabase Storage!");
@@ -252,5 +258,86 @@ const UpdateVerse = () => {
     </div>
   );
 };
+
+// ==========================
+// Manage Payment Destinations
+// ==========================
+// ==========================
+// Manage Payment Destinations
+// ==========================
+const ManageDestinations = () => {
+  const [destinations, setDestinations] = useState([]);
+  const [type, setType] = useState("Paybill");
+  const [number, setNumber] = useState("");
+
+  useEffect(() => {
+    fetchDestinations();
+  }, []);
+
+  const fetchDestinations = async () => {
+    const { data, error } = await supabase
+      .from("payment_destinations")
+      .select("*")
+      .order("id", { ascending: false });
+    if (error) console.error("Error fetching destinations:", error);
+    else setDestinations(data || []);
+  };
+
+  const addDestination = async () => {
+    if (!type || !number) return;
+    const { error } = await supabase
+      .from("payment_destinations")
+      .insert([{ type, number }]);
+    if (error) console.error("Error adding destination:", error);
+
+    setType("Paybill");
+    setNumber("");
+    fetchDestinations();
+  };
+
+  const deleteDestination = async (id) => {
+    const { error } = await supabase
+      .from("payment_destinations")
+      .delete()
+      .eq("id", id);
+
+    if (error) console.error("Error deleting destination:", error);
+    fetchDestinations();
+  };
+
+  return (
+    <div className="section">
+      <h2>Payment Destinations</h2>
+      <div className="form">
+        <select value={type} onChange={(e) => setType(e.target.value)}>
+          <option value="Paybill">Paybill</option>
+          <option value="Till">Till</option>
+          <option value="Phone">Phone</option>
+        </select>
+        <input
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+          placeholder="Enter number"
+        />
+        <button onClick={addDestination}>Add Destination</button>
+      </div>
+
+      <ul className="list">
+        {destinations.map((d) => (
+          <li key={d.id}>
+            <strong>{d.type}:</strong> {d.number}{" "}
+            <button
+              className="delete-btn"
+              onClick={() => deleteDestination(d.id)}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 
 export default Dashboard;

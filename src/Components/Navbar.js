@@ -90,6 +90,7 @@ const Navbar = () => {
         <Link to="/about"><FaInfoCircle className="icon" /> About</Link>
         <Link to="/programs"><FaBookOpen className="icon" /> Programs</Link>
         <Link to="/events"><FaCalendarAlt className="icon" /> Events</Link>
+        <Link to="/contribute"><FaCalendarAlt className="icon" /> Contribution</Link>
         <Link to="/contact"><FaEnvelope className="icon" /> Contact</Link>
 
         {!session ? (
@@ -122,6 +123,7 @@ const Navbar = () => {
         <Link to="/programs" onClick={toggleMenu}><FaBookOpen className="icon" /> Programs</Link>
         <Link to="/events" onClick={toggleMenu}><FaCalendarAlt className="icon" /> Events</Link>
         <Link to="/contact" onClick={toggleMenu}><FaEnvelope className="icon" /> Contact</Link>
+         <Link to="/contribute"><FaCalendarAlt className="icon" /> Contribution</Link>
 
         {!session ? (
           <>
